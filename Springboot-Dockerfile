@@ -1,0 +1,17 @@
+FROM openjdk:21
+
+FROM maven:3.9.5
+# Set working directory
+WORKDIR /app
+
+# Copy the project files to the container
+COPY . .
+
+# Build the application with Maven
+RUN mvn clean package -DskipTests
+
+# Expose the application port
+EXPOSE 8080
+
+# Start the application
+CMD ["java", "-jar", "target/test-0.0.1-SNAPSHOT.jar"]
