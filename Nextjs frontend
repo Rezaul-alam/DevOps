@@ -1,0 +1,24 @@
+FROM node:alpine
+  
+RUN mkdir -p /app
+#ENV PORT 8090
+
+WORKDIR /app
+
+COPY package.json /app
+#COPY yarn.lock /app
+
+# Production use node instead of root
+# USER node
+
+#RUN yarn install --production
+RUN npm install --force
+
+COPY . /app
+
+#RUN yarn build
+RUN npm run build
+
+#EXPOSE 8090
+#CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]
